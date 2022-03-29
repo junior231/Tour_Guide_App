@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from "@mui/material/Grid"
 import Typography from '@mui/material/Typography';
@@ -7,8 +7,8 @@ import Rating from '@mui/material/Rating';
 import {AccessTime} from '@mui/icons-material';
 import {createTheme, ThemeProvider} from '@mui/material';
 import { Link } from "react-router-dom";
-
-
+import { useDispatch } from 'react-redux'
+import {getImage, getDescription} from '../features/tourslice'
 
 const theme = createTheme({
   components: {
@@ -36,6 +36,17 @@ const theme = createTheme({
 })
 
 export default function TourCard({tour}) {
+  const dispatch = useDispatch();
+
+  const handleClick = (item) => {
+    dispatch(getImage(item.image))
+    localStorage.setItem("tourImg", JSON.stringify(item.image))
+    dispatch(getDescription(item.name))
+    localStorage.setItem("tourName", JSON.stringify(item.name))
+
+  };
+
+
   return (
     <Grid item xs={3}>
         <ThemeProvider theme={theme}>
@@ -43,7 +54,7 @@ export default function TourCard({tour}) {
           <Link  to={{
             pathname: `/${tour.name.split(' ').join('')}`
           }}>
-          <img onClick={() => console.log(tour.id)} src={tour.image}  
+          <img onClick={() => handleClick(tour)} src={tour.image}  
           alt={tour.name} 
           className='img'
           />

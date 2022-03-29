@@ -3,18 +3,18 @@ import {Route, Routes} from 'react-router-dom'
 import Home from './pages/Home';
 import SearchAppBar from './components/AppBar';
 import Tour from './pages/Tour';
+import ContextProvider from './context/TourContext'
 
 
 function App() {
-
   return (
-  <>
-        <SearchAppBar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path="/:slug" element={<Tour />} />
-        </Routes>
-  </>
+  <ContextProvider>
+    <SearchAppBar />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path="/:slug" element={<Tour />} />
+    </Routes>
+  </ContextProvider>
     
   );
 }

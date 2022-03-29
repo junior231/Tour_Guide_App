@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState, useMemo} from 'react'
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -7,18 +7,39 @@ import CustomizedAccordions from '../components/Accordion'
 import Paper from '@mui/material/Paper';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BasicModal from '../components/Modal'
+import { useSelector} from 'react-redux'
 
 
 const Tour = () => {
+    const {image, text} = useSelector(state => {
+        return {
+            image: state.tourState.image,
+            text: state.tourState.description
+        }
+    });
+
+    const [tourImg, setTourImg] = useState('');
+    const [tourDesc, setTourDesc] = useState('');
+
+    useEffect(() => {
+        const savedImg = localStorage.getItem("tourImg");
+        const savedDesc = localStorage.getItem("tourName")
+        const initialImg = JSON.parse(savedImg);
+        const initialText = JSON.parse(savedDesc)
+        setTourImg(initialImg)
+        setTourDesc(initialText)
+    }, []);
+
+
   return (
     <Container sx={{width: 900, marginBottom: 20}}>
-        <Typography variant='h3' component='h1' mt={3}>
-            Explore Ontario Like Never Before
+        <Typography variant='h3' textAlign='center' component='h1' mt={3}>
+            {text !== '' ? text : tourDesc}
         </Typography>   
         <Box mt={3} sx={{
             display: 'flex'
         }}>
-            <img src="/images/springbank.jpg" alt="Spring Bank View London Ontario"
+            <img src={image !== '' ? image : tourImg} alt={image}
              height={325}
             />
             <Collage />
@@ -32,7 +53,7 @@ const Tour = () => {
             </Typography> 
         </Box>
         <Box mb={10}>
-            <Typography variant='h6' component='h6' mt={3} gutterBottom={6}>
+            <Typography variant='h6' component='h6' mt={3} gutterBottom>
                 Frequently Asked Questions
             </Typography> 
             <CustomizedAccordions />
