@@ -1,8 +1,6 @@
 import React from 'react'
 import TourCard from '../components/TourCard';
-import Container from '@mui/material/Container';
-import Grid from "@mui/material/Grid";
-import Typography from '@mui/material/Typography';
+import {Typography, Grid, Container,  }from '@mui/material';
 import { useSelector } from 'react-redux'
 
 
@@ -10,22 +8,21 @@ import { useSelector } from 'react-redux'
 const Home = () => {
   const cities = useSelector(state => state.tourState.cities)
   return (
-    <div className="App">
-      <Container sx={{
-        marginY: 5
-      }}>
+<Grid container justifyContent='center'>
+<Grid item xs={10} sm={10} p={2}>
         {cities.map((city, index) => (
          <>
-            <Typography key={index} variant='h4' component='h2' mt={5} mb={3}>
+            <Typography textAlign='center' variant='h5' key={index} fontWeight={500} p={3}>
               Top {city.name} Tours
             </Typography>
-            <Grid  container spacing={5}>
+            <Grid justifyContent='flex-start' container spacing={3}>
              {city.tours.map((tour, index) => <TourCard tour={tour} key={index}/>)}
             </Grid>
          </>
         ))}
-      </Container>
-    </div>
+      </Grid>
+</Grid>
+   
   )
 }
 

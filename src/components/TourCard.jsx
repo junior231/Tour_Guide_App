@@ -48,7 +48,7 @@ export default function TourCard({tour}) {
 
 
   return (
-    <Grid item xs={3}>
+    <Grid sx={{mt: 0.5, mb: 0.5}} item xs={12} sm={6} lg={4} xl={3}>
         <ThemeProvider theme={theme}>
         <Paper elevation={3}>
           <Link  to={{

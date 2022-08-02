@@ -1,16 +1,14 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import StaticDateRangePickerDemo from '../components/DatePicker'
+import * as React from "react";
+import { Box, Button, Modal, Grid } from "@mui/material";
+import StaticDateRangePickerDemo from "../components/DatePicker";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -21,18 +19,30 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <Grid container justifyContent="center">
       <Button onClick={handleOpen}>Book Now</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <StaticDateRangePickerDemo />
-        </Box>
-      </Modal>
-    </div>
+      <Grid item xs={12}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              bgcolor: "background.paper",
+              border: "2px solid #000",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <StaticDateRangePickerDemo />
+          </Box>
+        </Modal>
+      </Grid>
+    </Grid>
   );
 }
