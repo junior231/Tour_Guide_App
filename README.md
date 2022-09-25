@@ -34,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Languages & tools
 - React 
 - Material UI v5
-- React-Redux (an overkill for such a litte project but helpful for app-wide state management)
+- React-Redux (an overkill for such a little project but helpful for app-wide state management)
 
 
 ## Contributing
